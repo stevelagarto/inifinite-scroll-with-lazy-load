@@ -36,6 +36,15 @@
   font-size: 0.5em;
   padding: 5px;
 }
+.orange {
+  height: 100px;
+  width: 150px;
+  background-color: rgb(156, 116, 40);
+  margin: 10px;
+  text-align: end;
+  font-size: 0.5em;
+  padding: 5px;
+}
 .flex {
   display: flex;
   flex-direction: row;
