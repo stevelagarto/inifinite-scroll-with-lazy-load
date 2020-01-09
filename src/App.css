@@ -45,6 +45,15 @@
   font-size: 0.5em;
   padding: 5px;
 }
+.children {
+  height: 100px;
+  width: 150px;
+  background-color: rgb(156, 40, 98);
+  text-align: end;
+  font-size: 0.5em;
+  margin: 10px;
+  padding: 5px;
+}
 .flex {
   display: flex;
   justify-content: center;
