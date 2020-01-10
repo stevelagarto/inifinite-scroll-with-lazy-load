@@ -7,11 +7,7 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
   background-color: #282c34;
@@ -19,7 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -37,8 +33,8 @@
   padding: 5px;
 }
 .orange {
-  height: 100px;
-  width: 150px;
+  height: 300px;
+  width: 400px;
   background-color: rgb(245, 119, 2);
   margin: 10px;
   text-align: end;
@@ -46,19 +42,28 @@
   padding: 5px;
 }
 .children {
-  height: 100px;
-  width: 150px;
+  height: 300px;
+  width: 400px;
   background-color: rgb(156, 40, 98);
   text-align: end;
   font-size: 0.5em;
   margin: 10px;
   padding: 5px;
 }
+.flex-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .flex {
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.scrollLoader {
+  background-color: #00ff95;
+  height: 5px;
 }
 
 @keyframes App-logo-spin {
