@@ -6,7 +6,7 @@ IntersectionObserver.prototype.POLL_INTERVAL = 100;
 let pages = 1
 const request = async () => {
   
-  const response = await fetch('https://pixabay.com/api/?key=12607862-fd9c4e5d2ce0e316e5fe18d32&image_type=photo&per_page=40&page=' + pages);
+  const response = await fetch('https://pixabay.com/api/?key=12607862-fd9c4e5d2ce0e316e5fe18d32&image_type=photo&per_page=24&page=' + pages);
   const json = await response.json();
   console.log('FETCHED', json);
   
@@ -29,14 +29,15 @@ const InfiniteScroll = ( { rootVal = null, rootMargin = '0px', threshold= 0 }) =
   useEffect(() => {
     const options2 = { // options on props
       root: rootVal,
-      rootMargin: '0px',
-      threshold: 1.0
+      rootMargin: '50px',
+      threshold: 0
     }    
     const lzyobs = new IntersectionObserver((entries)=> {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.target.className !== "orange") {
-          lzyobs.unobserve(entry.target)
-          entry.target.className = "children"
+          console.log('Entry:', entry);
+          lzyobs.unobserve(entry.target);
+          entry.target.src = entry.target.name
         }
       })
     }, options2);

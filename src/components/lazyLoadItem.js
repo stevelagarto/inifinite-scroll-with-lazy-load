@@ -15,7 +15,7 @@ useEffect(()=> {
 const comp = !data.visible ? <Children data={data}/> : <div>not visible</div>;
 
  return (
-  <Loader ref={loader} className="orange">{comp}</Loader>)
+<img ref={loader} className="img" name={data.webformatURL}  width={400} height={300} />)
 
  }
 

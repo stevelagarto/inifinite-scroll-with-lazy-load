@@ -65,6 +65,11 @@
   background-color: #00ff95;
   height: 5px;
 }
+.img { 
+  border: 0;
+  outline: none;
+  margin: 10px;
+}
 
 @keyframes App-logo-spin {
   from {
