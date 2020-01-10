@@ -3,14 +3,19 @@ import styled from 'styled-components';
 
 const Loader = styled.div` 
 `;
+let loaded = true;
 function LazyLoadItem({ observer, Children, data }) {
  const loader = useRef(null);
  useEffect(()=> {
    if (loader && loader.current) {
     observer.observe(loader.current);
    }
- })
- return (<Loader ref={loader} className="orange"><Children data={data}/></Loader>)
+ },[]);
+
+ const comp = loaded ? <Children data={data}/> : <div>not visible</div>;
+
+ return (
+  <Loader ref={loader} className="orange">{comp}</Loader>)
 
  }
 

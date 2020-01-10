@@ -15,12 +15,14 @@ const request = async () => {
 
 
 let counter = 0;
-const initialData = Array(50).fill('mock');
+//const initialData = Array(50).fill('mock');
 IntersectionObserver.prototype.POLL_INTERVAL = 100;
 
 const InfiniteScroll = ( { rootVal = null, rootMargin = '50px', threshold= 1.0 }) => {
+  console.log('Scroll Rendered');
+  
   const [data, setData] = useState([]);
-  const loader = useRef(null);
+  const loader = useRef(1);
 
   useEffect(() => {
     const options = { // options on props
@@ -32,15 +34,13 @@ const InfiniteScroll = ( { rootVal = null, rootMargin = '50px', threshold= 1.0 }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) { 
-          console.log('HERE')
           request().then(res =>  {
-            console.log('INSIDE REQUEST')
-
-            setData((data) => [...data, ...res.hits])
+            setData((data) => [...data, ...res.hits]);
             pages = pages + 1;
+            observer.unobserve(loader.current);
             return () => {
               observer.disconnect();
-              lazyobserver.disconnect()
+              lazyobserver.disconnect();
             };
           });
         } 
@@ -51,18 +51,18 @@ const InfiniteScroll = ( { rootVal = null, rootMargin = '50px', threshold= 1.0 }
       observer.observe(loader.current);
      
     }
-  },[])
+  },[data])
 
 const options2 = { // options on props
     root: rootVal,
-    rootMargin: '50px',
-    threshold: 0.2
+    rootMargin: '0px',
+    threshold: 1.0
   }
 const lazyobserver = new IntersectionObserver((entries)=> {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-        lazyobserver.unobserve(entry.target)
-        entry.target.className = "children"
+  entries.forEach(entrie => {
+    if (entrie.isIntersecting && entrie.target.className !== "orange") {
+        lazyobserver.unobserve(entrie.target)
+        entrie.target.className = "children"
     }
 })
 }, options2);
@@ -70,8 +70,9 @@ const lazyobserver = new IntersectionObserver((entries)=> {
  return (
   <div className="flex">
     { data.map ( data => {
-        counter = counter +1;
+        counter++;
         return <Item 
+          style={{display:"none"}}
           data = {data}
           observer={lazyobserver} 
           key={counter} 
