@@ -1,9 +1,9 @@
 const request = async (pages) => {  
   try {
     const response = await fetch(`https://api.unsplash.com/search/photos?client_id=04902b80294822aa86dbe5c57ee47e1c1f0e8a0f0f360979746970a1239001dd&query=cats&per_page=24&page=${pages}`);
-    const json = await response.json();
-    console.log('FETCHED', json);
-    return(json);
+    const dataFetched = await response.json();
+   // console.log('FETCHED', json);
+    return(dataFetched);
   } catch (e) {
     console.log('ERROR');
     return false;

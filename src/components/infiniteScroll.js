@@ -19,99 +19,86 @@ const InfiniteScroll = ({
   const [ visibilityControl, setVisibilityControl ] = useState({});
   const intersectingElement = useRef( null );
 
-
-  
   useEffect(() => { 
-    console.log('control', visibilityControl) 
-
     const templazyItemsObserver = new IntersectionObserver(( entries ) => {
-      console.log(entries.length)
       entries.forEach( entry => {
         if (entry.isIntersecting) {
           setVisibilityControl((visibilityControl) => ({
             ...visibilityControl, 
             [entry.target.id]: true
           }))
-          templazyItemsObserver.unobserve(entry.target)
-          console.log('ID', entry.target.id)   
+          templazyItemsObserver.unobserve(entry.target)   
         }
       })
     },
     { // options on props
       rootMargin: '0px',
-      threshold: 1.0
+      threshold: 0.5
     })
     setLazyItemsObserver(templazyItemsObserver);
-    
+    setPages((pages) => pages+1 );
     const observer = new IntersectionObserver(( entries ) => {
+          async function asyncFunction () {
           if ( entries[0].isIntersecting ) {       
             setIsFetching(true); 
-            request( pages )
-            .then( res =>  {  
-              if ( res ) {                 
-                const transformedData = transformer( res );
-                setRequestedData(( requestedData ) => [...requestedData, ...transformedData.map((element)=> {
+            const results = await request( pages )
+              if ( results ) {                 
+                const transformedData = transformer( results );
+                setRequestedData(( requestedData ) => [...requestedData, ...transformedData.map((element) => {
                   const id = uuid();                    
-                  setVisibilityControl((visibilityControl) => ({
+                  setVisibilityControl(( visibilityControl ) => ({
                     ...visibilityControl, 
                     [id]: false
-                  })) 
+                  }));
               
                   return {...element,  _id:id}                  
-                })]);
-                
+                }
+                )]);
               }
-            })
-            .catch(console.error.bind(console))
-            .then(() => { 
-              console.log('data', requestedData);
-              setPages(pages +1);
-              setIsFetching(false);
-              
-            })
+            //.catch(console.error.bind(console))
+              setIsFetching( false ); 
           } 
-    }, { // options on props
+        } asyncFunction();
+    }, {
       root: iSrootVal,
       rootMargin: iSrootMargin,
       threshold: iSthreshold
     });
+    
     observer.observe( intersectingElement.current );
     
     return () => { 
       observer.disconnect();
     };
-  },[  requestedData]) //change for didmount
+  },[ requestedData ]);
 
-
-  
   const printItem = requestedData.map ( itemData => {  
-  
-  if (itemData.isVisible) {
-  return <Children 
-    itemData = {itemData}
-    key={itemData.id} 
-    Children={Children}
-    observer={lazyItemsObserver}
-  />
-  } else {
-    return <LazyLoadItem 
-    itemData = {itemData}
-    key={itemData._id} 
-    Children={Children}
-    observer={lazyItemsObserver}
-    isVisible={visibilityControl[itemData._id]}
-  />
+    if (itemData.isVisible) {
+    return <Children 
+      itemData = {itemData}
+      key={itemData.id} 
+      Children={Children}
+      observer={lazyItemsObserver}
+    />
+    } else {
+      return <LazyLoadItem 
+      itemData = {itemData}
+      key={itemData._id} 
+      Children={Children}
+      observer={lazyItemsObserver}
+      isVisible={visibilityControl[itemData._id]}
+    />
 
-  }
-  })
+    }
+  });
 
- return (
-  <div className="flex-container"> 
-    <div className="flex">
-    { printItem }
-    </div>
-  <div className="scrollLoader" ref={intersectingElement}>{isFetching && <div className="spinner">Loading Placeholder...</div>}</div>
- </div>)
+  return (
+    <div className="flex-container"> 
+      <div className="flex">
+      { printItem }
+      </div>
+    <div className="scrollLoader" ref={intersectingElement}>{isFetching && <div className="spinner">Loading...</div>}</div>
+  </div>)
  }
 
 export default InfiniteScroll;
