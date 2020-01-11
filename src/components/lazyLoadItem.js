@@ -1,31 +1,35 @@
-import React, {useEffect, useRef} from 'react';
-import styled from 'styled-components';
+import React, {useEffect, useRef, useState} from 'react';
 
-const Loader = styled.div` 
-`;
+function LazyLoadItem({ Children, itemData }) {
+  const [ isVisible, setIsVisible ] = useState( false );
+  const itemReference = useRef( null );
+  useEffect(()=> {
+      const itemObserver = new IntersectionObserver(( entries ) => {
+        if (!entries[0].isIntersecting) {
+          setIsVisible( false );
+        }
+        
+        if ( entries[0].isIntersecting ) {
+          //itemObserver.unobserve( itemReference.current )
+          setIsVisible( true );
+        }
+      }, { // options on props
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      });
+      itemObserver.observe( itemReference.current );
 
-function LazyLoadItem({ observer, Children, data }) {
-const loader = useRef(null);
-useEffect(()=> {
-    const itemObserver = new IntersectionObserver((entries)=>{
-      if (entries[0].isIntersecting) {
-        console.log('VIEW');
-        entries[0].target.src = entries[0].target.name
-        itemObserver.unobserve(loader.current)
-      }
-    })
-   if (loader && loader.current) {
-    itemObserver.observe(loader.current);
-   }
-   return () => itemObserver.disconnect();
- },[]);
+    return () => itemObserver.disconnect();
+  },[]);
 
-const comp = !data.visible ? <Children data={data}/> : <div>not visible</div>;
-
- return (
-<img ref={loader} className="img" name={data.webformatURL}  width={400} height={300} />)
-
- }
-
+  const loadedItem = isVisible 
+    ? <Children data={itemData}/> 
+    : <div className="placeholder"></div>;
+  
+  return (
+    <div ref={itemReference}>{loadedItem}</div>
+  )
+}
 
 export default LazyLoadItem;

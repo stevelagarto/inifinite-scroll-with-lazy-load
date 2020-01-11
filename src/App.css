@@ -42,33 +42,50 @@
   padding: 5px;
 }
 .children {
+  display: flex;
+  flex-direction: column;
   height: 300px;
-  width: 400px;
-  background-color: rgb(156, 40, 98);
-  text-align: end;
+  width: 300px;
+  max-height: 300px;
+  max-width: 300px;
+  background-color: rgb(80, 79, 79);
+  justify-content: center;
+  align-items: center;
   font-size: 0.5em;
   margin: 10px;
   padding: 5px;
+  border-radius: 15px;
 }
 .flex-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 .flex {
   display: flex;
-  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
 .scrollLoader {
   background-color: #00ff95;
-  height: 5px;
+  height: 1px;
 }
 .img { 
   border: 0;
   outline: none;
   margin: 10px;
+  border-radius: 20px;
+  height: 200px;
+  width: 300px;
+}
+.placeholder {
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  padding: 5px;
+  background-color: brown;
 }
 
 @keyframes App-logo-spin {
