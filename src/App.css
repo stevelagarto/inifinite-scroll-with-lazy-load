@@ -70,7 +70,12 @@
 }
 .scrollLoader {
   background-color: #00ff95;
-  height: 1px;
+  height: 5px;
+}
+
+.spinner {
+  height: 20px;
+  width: 200px;
 }
 .img { 
   border: 0;
@@ -79,13 +84,15 @@
   border-radius: 20px;
   height: 200px;
   width: 300px;
+  background-size: cover;
 }
 .placeholder {
   height: 300px;
   width: 300px;
   margin: 10px;
   padding: 5px;
-  background-color: brown;
+  background-color: rgb(59, 170, 8);
+  border-radius: 15px;
 }
 
 @keyframes App-logo-spin {

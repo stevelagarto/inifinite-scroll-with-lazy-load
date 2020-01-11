@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import InfiniteScroll from './components/infiniteScroll.js';
+import InfiniteScrollwithLazyLoad from './components/infiniteScroll.js';
 import request from './config/request'
-import Children from './components/children';
+import Children from './config/children';
+import props from './config/infiniteScrollProps'
 
 
 
@@ -15,16 +16,17 @@ function App() {
           INIFINITE SCROLL
         </p>
         
-        <InfiniteScroll 
+        <InfiniteScrollwithLazyLoad 
+          iSrootVal = {null}
+          iSrootMargin = {'100px'}
+          iSthreshold = {0}
           Children={Children}
           request={request}
-          transformer={(res) => res.hits.map((element) => ({
-            webformatURL: element.webformatURL,
-            user: element.user,
-            type: element.type
+          transformer={(res) => res.results.map((element) => ({
+            small: element.urls.thumb,
+            description: element.alt_description
           }))}
         />
-        
       </header>
     </div>
   );

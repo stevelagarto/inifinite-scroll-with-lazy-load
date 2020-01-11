@@ -1,34 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-function LazyLoadItem({ Children, itemData }) {
-  const [ isVisible, setIsVisible ] = useState( false );
+function LazyLoadItem({ observer, Children, itemData, isVisible }) {
   const itemReference = useRef( null );
   useEffect(()=> {
-      const itemObserver = new IntersectionObserver(( entries ) => {
-        if (!entries[0].isIntersecting) {
-          setIsVisible( false );
-        }
-        
-        if ( entries[0].isIntersecting ) {
-          //itemObserver.unobserve( itemReference.current )
-          setIsVisible( true );
-        }
-      }, { // options on props
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-      });
-      itemObserver.observe( itemReference.current );
+      
+      observer.observe( itemReference.current );
 
-    return () => itemObserver.disconnect();
+    return () => observer.unobserve( itemReference.current );
   },[]);
-
-  const loadedItem = isVisible 
-    ? <Children data={itemData}/> 
-    : <div className="placeholder"></div>;
   
+  const print = isVisible ? <Children data={itemData}/> :  <div ref={itemReference} id={itemData._id} className={isVisible ? "children" : "placeholder"}>
+  </div>
+
   return (
-    <div ref={itemReference}>{loadedItem}</div>
+    <>
+    {print}
+    </>
   )
 }
 
