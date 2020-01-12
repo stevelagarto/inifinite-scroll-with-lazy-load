@@ -1,10 +1,13 @@
 import React, {useRef, useEffect, useState} from 'react';
 import LazyLoadItem from './lazyLoadItem';
-import uuid from 'uuid/v1';
+import uuid from 'uuid';
+import DefaultInfiniteScrollLoader from '../config/defaultInfiniteScrollLoader'
+
 //let countIdItems = 0;
 IntersectionObserver.prototype.POLL_INTERVAL = 100;
 
 const InfiniteScroll = ({ 
+  Loader = DefaultInfiniteScrollLoader,
   Children, 
   transformer, 
   request, 
@@ -97,7 +100,7 @@ const InfiniteScroll = ({
       <div className="flex">
       { printItem }
       </div>
-    <div className="scrollLoader" ref={intersectingElement}>{isFetching && <div className="spinner">Loading...</div>}</div>
+    <div className="scrollLoader" ref={intersectingElement}>{isFetching && <Loader /> }</div>
   </div>)
  }
 

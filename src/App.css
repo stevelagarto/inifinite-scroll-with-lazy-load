@@ -1,3 +1,9 @@
+body {
+  background-color: #282c34;
+width: 100vw;
+min-width: 100vw;
+}
+
 .App {
   text-align: center;
 }
@@ -6,8 +12,6 @@
   height: 40vmin;
   pointer-events: none;
 }
-
-
 
 .App-header {
   background-color: #282c34;
@@ -23,23 +27,36 @@
 .App-link {
   color: #61dafb;
 }
-.square {
-  height: 100px;
-  width: 150px;
-  background-color: rgb(45, 151, 116);
-  margin: 10px;
-  text-align: end;
-  font-size: 0.5em;
-  padding: 5px;
+
+.flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-.orange {
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+.scrollLoader {
+  margin-bottom: 100px;
+  margin-top: 30px
+}
+
+
+.img { 
+  border: 0;
+  outline: none;
+  margin-bottom: 10px;
+  border-radius: 20px;
   height: 300px;
-  width: 400px;
-  background-color: rgb(245, 119, 2);
-  margin: 10px;
-  text-align: end;
-  font-size: 0.5em;
-  padding: 5px;
+  width: 300px;
+  background-size: cover;
+  background-position-y: center;
 }
 .children {
   display: flex;
@@ -48,7 +65,7 @@
   width: 300px;
   max-height: 300px;
   max-width: 300px;
-  background-color: rgb(80, 79, 79);
+  /* background-color: rgb(80, 79, 79); */
   justify-content: center;
   align-items: center;
   font-size: 0.5em;
@@ -56,51 +73,32 @@
   padding: 5px;
   border-radius: 15px;
 }
-.flex-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-.flex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.scrollLoader {
-  height: 5px;
-  margin-bottom: 50px;
-}
 
-.spinner {
-  height: 20px;
-
-}
-.img { 
-  border: 0;
-  outline: none;
-  margin: 10px;
-  border-radius: 20px;
-  height: 200px;
-  width: 300px;
-  background-size: cover;
-}
 .placeholder {
   height: 300px;
   width: 300px;
   margin: 10px;
   padding: 5px;
-  background-color: rgb(51, 51, 51);
+  /* background-color: rgb(236, 0, 0); */
   border-radius: 15px;
 }
+.fade-in {
+  opacity: 1;
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hidden {
+  opacity: 0;
+}
+
+.item {
+  transition: all 1s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

@@ -3,8 +3,7 @@ import './App.css';
 import InfiniteScrollwithLazyLoad from './components/infiniteScroll.js';
 import request from './config/request'
 import Children from './config/children';
-//import props from './config/infiniteScrollProps'
-
+import InfiniteScrollLoader from './config/infiniteScrollLoader';
 
 
 function App() {
@@ -17,6 +16,7 @@ function App() {
         </p>
         
         <InfiniteScrollwithLazyLoad 
+          Loader= {InfiniteScrollLoader}
           iSrootVal = {null}
           iSrootMargin = {'0px'}
           iSthreshold = {0.5}

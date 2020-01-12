@@ -9,13 +9,13 @@ function LazyLoadItem({ observer, Children, itemData, isVisible }) {
     return () => observer.unobserve( itemReference.current );
   },[]);
   
-  const print = isVisible ? <Children data={itemData}/> :  <div ref={itemReference} id={itemData._id} className={isVisible ? "children" : "placeholder"}>
+  const fadeIn = isVisible ? "item fade-in" : "item hidden";
+
+  const print = isVisible ? <div className="fade-in" ><Children data={itemData}/> </div>:  <div ref={itemReference} id={itemData._id} className="placeholder fade-in">
   </div>
 
   return (
-    <>
-    {print}
-    </>
+<div className={fadeIn}>{print}</div>
   )
 }
 
