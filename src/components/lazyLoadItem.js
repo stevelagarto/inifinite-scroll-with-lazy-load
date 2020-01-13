@@ -20,8 +20,8 @@ function LazyLoadItem({
   
   const wrapperStyle = {
     minHeight: itemHeight,
-    minWidth: itemWidth,
     maxHeight: itemHeight,
+    minWidth: itemWidth,
     maxWidth: itemWidth,
   };
 

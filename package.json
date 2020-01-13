@@ -1,42 +1,42 @@
 {
   "name": "react-infscroll-lazyload",
-  "version": "0.1.1",
+  "version": "0.0.3",
   "private": false,
-  "main": "dist/main.js",
+  "main": "./dist/main.js",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-infscroll-lazyload": "^0.1.0",
-    "react-infscrolllazyload1": "^0.1.1",
+    "prop-types": "^15.7.2",
+    "react-infscroll-lazyload": "^1.1.2",
     "react-scripts": "3.3.0",
     "react-svg-spinner": "^1.0.4",
     "spinner-loader": "^1.0.3",
     "styled-components": "^4.4.1"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
-  },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "react-dom": "^16.12.0",
     "@babel/cli": "^7.8.0",
     "@babel/preset-react": "^7.8.0",
+    "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
     "eslint-plugin-json": "^1.4.0",
+    "extract-loader": "^3.1.0",
     "gulp": "^4.0.2",
     "gulp-eslint": "^5.0.0",
     "gulp-load-plugins": "^1.5.0",
     "gulp-replace": "^1.0.0",
+    "handlebars-loader": "^1.7.1",
     "husky": "2.3.0",
-    "react-loader-spinner": "^3.1.5",
-    "uuid": "^3.3.3"
+    "react-loader-spinner": "^3.1.5"
+  },
+  "peerDependencies": {
+    "uuid": "^3.3.3",
+    "react": "^16.12.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

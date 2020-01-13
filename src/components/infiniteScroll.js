@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import LazyLoadItem from './lazyLoadItem';
 import uuid from 'uuid';
-import DefaultInfiniteScrollLoader from '../components/defaultInfiniteScrollLoader'
+import DefaultInfiniteScrollLoader from './defaultInfiniteScrollLoader'
 import '../style/style.css'
 
 //let countIdItems = 0;
@@ -96,14 +96,6 @@ const InfiniteScroll = ({
   },[])
 
   const printItem = requestedData.map ( itemData => {  
-    if (itemData.isVisible) {
-    return <Children 
-      itemData = {itemData}
-      key={itemData.id} 
-      Children={Children}
-      observer={lazyItemsObserver}
-    />
-    } else {
       return <LazyLoadItem 
       itemData = {itemData}
       key={itemData._id} 
@@ -113,13 +105,12 @@ const InfiniteScroll = ({
       itemHeight={itemHeight}
       itemWidth= {itemWidth}
     />
-    }
   });
 
   return (
     <>
       { printItem } 
-      <div ref={intersectingElement} className="scrollLoader" style={{width: itemWidth, height: '200px'}}>
+      <div ref={intersectingElement} className="scrollLoader" style={{width: itemWidth}}>
       <div>{isFetching && <Loader /> }</div></div>
     </>
   )

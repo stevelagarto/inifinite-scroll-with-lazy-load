@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import LazyLoadItem from './lazyLoadItem';
 import uuid from 'uuid';
-import DefaultInfiniteScrollLoader from '../components/defaultInfiniteScrollLoader'; //let countIdItems = 0;
+import DefaultInfiniteScrollLoader from './defaultInfiniteScrollLoader';
+import './style/style.css'; //let countIdItems = 0;
 
 IntersectionObserver.prototype.POLL_INTERVAL = 100;
 
@@ -85,31 +86,21 @@ const InfiniteScroll = ({
     };
   }, []);
   const printItem = requestedData.map(itemData => {
-    if (itemData.isVisible) {
-      return React.createElement(Children, {
-        itemData: itemData,
-        key: itemData.id,
-        Children: Children,
-        observer: lazyItemsObserver
-      });
-    } else {
-      return React.createElement(LazyLoadItem, {
-        itemData: itemData,
-        key: itemData._id,
-        Children: Children,
-        observer: lazyItemsObserver,
-        isVisible: visibilityControl[itemData._id],
-        itemHeight: itemHeight,
-        itemWidth: itemWidth
-      });
-    }
+    return React.createElement(LazyLoadItem, {
+      itemData: itemData,
+      key: itemData._id,
+      Children: Children,
+      observer: lazyItemsObserver,
+      isVisible: visibilityControl[itemData._id],
+      itemHeight: itemHeight,
+      itemWidth: itemWidth
+    });
   });
   return React.createElement(React.Fragment, null, printItem, React.createElement("div", {
     ref: intersectingElement,
     className: "scrollLoader",
     style: {
-      width: itemWidth,
-      height: '200px'
+      width: itemWidth
     }
   }, React.createElement("div", null, isFetching && React.createElement(Loader, null))));
 };

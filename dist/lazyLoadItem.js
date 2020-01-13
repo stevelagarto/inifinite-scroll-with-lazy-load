@@ -16,8 +16,8 @@ function LazyLoadItem({
   const fadeIn = isVisible ? "item fade-in" : "item hidden";
   const wrapperStyle = {
     minHeight: itemHeight,
-    minWidth: itemWidth,
     maxHeight: itemHeight,
+    minWidth: itemWidth,
     maxWidth: itemWidth
   };
   const print = isVisible ? React.createElement(Children, {

@@ -3,7 +3,7 @@ import './App.css';
 import request from './testing/request'
 import Children from './testing/children';
 import InfiniteScrollLoader from './testing/infiniteScrollLoader';
-import InfiniteScrollWithLazyLoad from 'react-infscrolllazyload1';
+import InfiniteScrollWithLazyLoad from './components/main';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <div className="flex">
         <InfiniteScrollWithLazyLoad 
           Loader= {InfiniteScrollLoader}
-          itemHeight = {'320px'}
+          itemHeight = {'300px'}
           itemWidth = {'300px'}
           iSrootVal = {null}
           iSrootMargin = '0px'

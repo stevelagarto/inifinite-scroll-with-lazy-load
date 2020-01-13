@@ -1,15 +1,28 @@
-const webpack = require('webpack');
-const webpackClie = require('webpack-cli');
-const path = require('path');
+var path = require('path');
 
-const config = {
-
-  entry: './src/infinite-scroll-with-lazy-loading.js', output: {
-  
-    path: path.resolve(__dirname, 'dist'),
-  
-    filename: 'bundle.js' }
-  
+module.exports = {
+  mode: 'production',
+  entry: './src/components/main.js',
+  output: {
+    path: path.resolve('dist'),
+    filename: 'main.js',
+    libraryTarget: 'commonjs2'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          'handlebars-loader', // handlebars loader expects raw resource string
+          'extract-loader',
+          'css-loader',
+        ],
+      }
+    ]
+  }
 };
-  
-module.exports = config;
