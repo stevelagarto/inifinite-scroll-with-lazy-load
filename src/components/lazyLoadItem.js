@@ -1,6 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 
-function LazyLoadItem({ observer, Children, itemData, isVisible }) {
+function LazyLoadItem({ 
+  observer, 
+  Children, 
+  itemData, 
+  isVisible,
+  itemHeight = '300px',
+  itemWidth = '300px' 
+}) {
   const itemReference = useRef( null );
   useEffect(()=> {
       
@@ -10,12 +17,21 @@ function LazyLoadItem({ observer, Children, itemData, isVisible }) {
   },[]);
   
   const fadeIn = isVisible ? "item fade-in" : "item hidden";
+  
+  const wrapperStyle = {
+    minHeight: itemHeight,
+    minWidth: itemWidth,
+    maxHeight: itemHeight,
+    maxWidth: itemWidth,
+  };
 
-  const print = isVisible ? <div className="fade-in" ><Children data={itemData}/> </div>:  <div ref={itemReference} id={itemData._id} className="placeholder fade-in">
-  </div>
+  const print = isVisible 
+  ? <Children data={itemData}/> 
+  : <div ref={itemReference} id={itemData._id} style={{height: itemHeight,
+  width: itemWidth}}></div>
 
   return (
-<div className={fadeIn}>{print}</div>
+  <div style={wrapperStyle} className={fadeIn}>{print}</div>
   )
 }
 

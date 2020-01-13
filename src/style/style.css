@@ -1,0 +1,15 @@
+.scrollLoader {
+  flex-grow: 1;
+  margin-bottom: 40px;
+}
+
+.fade-in {
+  opacity: 1;
+}
+.hidden {
+  opacity: 0;
+}
+
+.item {
+  transition: opacity 1s;
+}

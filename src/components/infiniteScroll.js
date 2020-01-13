@@ -13,7 +13,11 @@ const InfiniteScroll = ({
   request, 
   iSrootVal = null, 
   iSrootMargin = '0px', 
-  iSthreshold = 1.0 }) => {
+  iSthreshold = 1.0,
+  itemHeight,
+  itemWidth
+
+  }) => {
   
   const [ requestedData, setRequestedData ] = useState([]);
   const [ isFetching, setIsFetching ] = useState( true );
@@ -26,6 +30,7 @@ const InfiniteScroll = ({
     const templazyItemsObserver = new IntersectionObserver(( entries ) => {
       entries.forEach( entry => {
         if (entry.isIntersecting) {
+          console.log('View')
           setVisibilityControl((visibilityControl) => ({
             ...visibilityControl, 
             [entry.target.id]: true
@@ -34,33 +39,41 @@ const InfiniteScroll = ({
         }
       })
     },
-    { // options on props
+    { 
+      rootVal: null,
       rootMargin: '0px',
-      threshold: 0.5
-    })
+      threshold: 0.2
+    });
+
     setLazyItemsObserver(templazyItemsObserver);
     setPages((pages) => pages+1 );
-    const observer = new IntersectionObserver(( entries ) => {
+
+    const infiniteScrollObserver = new IntersectionObserver(( entries ) => {
           async function asyncFunction () {
-          if ( entries[0].isIntersecting ) {       
-            setIsFetching(true); 
-            const results = await request( pages )
-              if ( results ) {                 
-                const transformedData = transformer( results );
-                setRequestedData(( requestedData ) => [...requestedData, ...transformedData.map((element) => {
-                  const id = uuid();                    
-                  setVisibilityControl(( visibilityControl ) => ({
-                    ...visibilityControl, 
-                    [id]: false
-                  }));
-              
-                  return {...element,  _id:id}                  
+            try {
+              if ( entries[0].isIntersecting ) {       
+              setIsFetching(true); 
+              const results = await request( pages )
+                if ( results ) {                 
+                  const transformedData = transformer( results );
+                  setRequestedData(( requestedData ) => [...requestedData, ...transformedData.map((element) => {
+                    const id = uuid();                    
+                    setVisibilityControl(( visibilityControl ) => ({
+                      ...visibilityControl, 
+                      [id]: false
+                    }));
+    
+                    return {...element,  _id:id}                  
+                  }
+                  )]);
                 }
-                )]);
-              }
-            //.catch(console.error.bind(console))
-              setIsFetching( false ); 
-          } 
+                
+                setIsFetching( false ); 
+            } 
+          } catch (error) {
+            console.error.bind(error);
+            setIsFetching( false );
+          }
         } asyncFunction();
     }, {
       root: iSrootVal,
@@ -68,12 +81,18 @@ const InfiniteScroll = ({
       threshold: iSthreshold
     });
     
-    observer.observe( intersectingElement.current );
+    infiniteScrollObserver.observe( intersectingElement.current );
     
     return () => { 
-      observer.disconnect();
+      infiniteScrollObserver.disconnect();
     };
   },[ requestedData ]);
+
+  useEffect (()=>{
+    return () => {
+      lazyItemsObserver.disconnect();
+    }
+  },[])
 
   const printItem = requestedData.map ( itemData => {  
     if (itemData.isVisible) {
@@ -90,18 +109,19 @@ const InfiniteScroll = ({
       Children={Children}
       observer={lazyItemsObserver}
       isVisible={visibilityControl[itemData._id]}
+      itemHeight={itemHeight}
+      itemWidth= {itemWidth}
     />
-
     }
   });
 
   return (
-    <div className="flex-container"> 
-      <div className="flex">
-      { printItem }
-      </div>
-    <div className="scrollLoader" ref={intersectingElement}>{isFetching && <Loader /> }</div>
-  </div>)
+    <>
+      { printItem } 
+      <div ref={intersectingElement} className="scrollLoader" style={{width: itemWidth}}>
+      <div>{isFetching && <Loader /> }</div></div>
+    </>
+  )
  }
 
 export default InfiniteScroll;

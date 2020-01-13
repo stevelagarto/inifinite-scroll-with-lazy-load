@@ -14,12 +14,14 @@ function App() {
         <p>
           INIFINITE SCROLL
         </p>
-        
+        <div className="flex">
         <InfiniteScrollwithLazyLoad 
           Loader= {InfiniteScrollLoader}
+          itemHeight = {'320px'}
+          itemWidth = {'300px'}
           iSrootVal = {null}
-          iSrootMargin = {'0px'}
-          iSthreshold = {0.5}
+          iSrootMargin = '0px'
+          iSthreshold = {1}
           Children={Children}
           request={request}
           transformer={(res) => res.results.map((element) => ({
@@ -27,6 +29,7 @@ function App() {
             description: element.alt_description
           }))}
         />
+        </div>
       </header>
     </div>
   );

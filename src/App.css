@@ -1,7 +1,7 @@
 body {
   background-color: #282c34;
-width: 100vw;
-min-width: 100vw;
+width: 100%;
+min-width: 100%;
 }
 
 .App {
@@ -41,64 +41,29 @@ min-width: 100vw;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: left;
-}
-.scrollLoader {
-  margin-bottom: 100px;
-  margin-top: 30px
+  align-items: center;
 }
 
+.children {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 0.6em; */
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 15px;
+}
 
 .img { 
   border: 0;
   outline: none;
   margin-bottom: 10px;
   border-radius: 20px;
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
   background-size: cover;
   background-position-y: center;
-}
-.children {
-  display: flex;
-  flex-direction: column;
-  height: 300px;
-  width: 300px;
-  max-height: 300px;
-  max-width: 300px;
-  /* background-color: rgb(80, 79, 79); */
-  justify-content: center;
-  align-items: center;
-  font-size: 0.5em;
-  margin: 10px;
-  padding: 5px;
-  border-radius: 15px;
-}
-
-.placeholder {
-  height: 300px;
-  width: 300px;
-  margin: 10px;
-  padding: 5px;
-  /* background-color: rgb(236, 0, 0); */
-  border-radius: 15px;
-}
-.fade-in {
-  opacity: 1;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-.item {
-  transition: all 1s;
-}
-
-@keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
 }
