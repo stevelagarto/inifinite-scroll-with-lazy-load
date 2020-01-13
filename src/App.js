@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
-import InfiniteScrollwithLazyLoad from './components/infiniteScroll.js';
-import request from './config/request'
-import Children from './config/children';
-import InfiniteScrollLoader from './config/infiniteScrollLoader';
-
+import request from './testing/request'
+import Children from './testing/children';
+import InfiniteScrollLoader from './testing/infiniteScrollLoader';
+import InfiniteScrollWithLazyLoad from 'react-infscrolllazyload1';
 
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
           INIFINITE SCROLL
         </p>
         <div className="flex">
-        <InfiniteScrollwithLazyLoad 
+        <InfiniteScrollWithLazyLoad 
           Loader= {InfiniteScrollLoader}
           itemHeight = {'320px'}
           itemWidth = {'300px'}
@@ -24,10 +23,11 @@ function App() {
           iSthreshold = {1}
           Children={Children}
           request={request}
-          transformer={(res) => res.results.map((element) => ({
-            small: element.urls.thumb,
-            description: element.alt_description
-          }))}
+          transformer= {(res) => res.results.map((element) => ({
+              small: element.urls.thumb,
+              description: element.alt_description
+            })
+          )}
         />
         </div>
       </header>
