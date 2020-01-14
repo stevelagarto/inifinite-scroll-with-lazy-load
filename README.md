@@ -1,4 +1,4 @@
-Gallereact is a complete ready to use gallery slider, with a lot of possible customizations. It works based on background images, which allows a better ratio managment. Just styling the div that contains the component with a height and a width the images will fit on that.
+DOCUMENTATION
 
 ## Getting started
 
