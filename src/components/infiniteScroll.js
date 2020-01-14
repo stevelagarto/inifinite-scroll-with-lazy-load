@@ -19,7 +19,6 @@ const InfiniteScroll = ({
   lazyThreshold = 0.2,
   itemHeight,
   itemWidth
-
   }) => {
   
   const [ requestedData, setRequestedData ] = useState([]);

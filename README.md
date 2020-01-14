@@ -52,8 +52,8 @@ import Loader from './components/loader'
 
 ## Props
 
-| Prop name        |    Type     |    Default     | Required |                         Description                          |
-| ---------------- | :---------: | :------------: | :------: | :----------------------------------------------------------: |
+| Prop name        |    Type     |    Default     | Required |                         Description s                         |
+| ---------------- | :---------: | :------------: | :------: | :----------------------------------: |
 | `Loader`         |  Component  | Default Loader |  false   |                   Custom loader component                    |
 | `itemHeigth`     |   String    |     '100%'     |  false   |       Defined height for the Item and the placeholder        |
 | `itemWidth`      |   String    |    '100vw'     |  false   |        Defined weight for the Item and the placeholde        |

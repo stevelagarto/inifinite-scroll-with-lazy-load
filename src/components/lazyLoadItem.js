@@ -28,7 +28,8 @@ function LazyLoadItem({
   : <div ref={itemReference} id={itemData._id} style={{height: itemHeight}}></div>
 
   return (
-  <div  style={wrapperStyle} className={fadeIn}>      {print}
+  <div  style={wrapperStyle} className={fadeIn}>      
+    {print}
   </div>
   )
 }
