@@ -7,7 +7,7 @@ const request = async (pages) => {
   } catch (e) {
     console.log('ERROR');
     return false;
-}
+  }
 }
 export default request;
 
