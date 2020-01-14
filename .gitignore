@@ -7,6 +7,16 @@
 
 # testing
 /coverage
+/testing
+/public
+/dist
+App.js
+App.cc
+App.test.js
+Index.js
+logo.svg
+main.js
+serviceWorker.js
 
 # production
 /build
