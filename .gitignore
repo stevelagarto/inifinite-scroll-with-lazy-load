@@ -9,9 +9,10 @@
 /coverage
 /testing
 /public
+public
 /dist
 App.js
-App.cc
+App.ccs
 App.test.js
 Index.js
 logo.svg
