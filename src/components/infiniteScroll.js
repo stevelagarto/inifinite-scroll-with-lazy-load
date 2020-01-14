@@ -4,7 +4,6 @@ import uuid from 'uuid';
 import DefaultInfiniteScrollLoader from './defaultInfiniteScrollLoader'
 import '../style/style.css'
 
-//let countIdItems = 0;
 IntersectionObserver.prototype.POLL_INTERVAL = 100;
 
 const InfiniteScroll = ({ 
@@ -15,6 +14,9 @@ const InfiniteScroll = ({
   iSrootVal = null, 
   iSrootMargin = '0px', 
   iSthreshold = 1.0,
+  lazyRootVal = null,
+  lazyRootMargin = '0px',
+  lazyThreshold = 0.2,
   itemHeight,
   itemWidth
 
@@ -41,9 +43,9 @@ const InfiniteScroll = ({
       })
     },
     { 
-      rootVal: null,
-      rootMargin: '0px',
-      threshold: 0.2
+      rootVal: lazyRootVal,
+      rootMargin: lazyRootMargin,
+      threshold: lazyThreshold
     });
 
     setLazyItemsObserver(templazyItemsObserver);

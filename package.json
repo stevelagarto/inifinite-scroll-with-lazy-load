@@ -1,8 +1,15 @@
 {
   "name": "react-infscroll-lazyload",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "main": "./dist/main.js",
+  "homepage": "https://github.com/stevelagarto/inifinite-scroll-with-lazy-load#readme",
+  "keywords": [
+    "infinite scroll",
+    "scroll",
+    "lazy load",
+    "laztload"
+  ],
   "dependencies": {
     "prop-types": "^15.7.2",
     "react-infscroll-lazyload": "^1.1.2",

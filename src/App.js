@@ -17,10 +17,13 @@ function App() {
         <InfiniteScrollWithLazyLoad 
           Loader= {InfiniteScrollLoader}
           itemHeight = {'300px'}
-          itemWidth = {'300px'}
+          itemWidth = {'15vw'}
           iSrootVal = {null}
           iSrootMargin = '0px'
           iSthreshold = {1}
+          lazyRootVal = {null}
+          lazyRootMargin = '0px'
+          lazyThreshold = {0.1}
           Children={Children}
           request={request}
           transformer= {(res) => res.results.map((element) => ({

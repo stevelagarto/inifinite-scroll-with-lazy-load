@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import LazyLoadItem from './lazyLoadItem';
 import uuid from 'uuid';
 import DefaultInfiniteScrollLoader from './defaultInfiniteScrollLoader';
-import './style/style.css'; //let countIdItems = 0;
+import '../style/style.css'; //let countIdItems = 0;
 
 IntersectionObserver.prototype.POLL_INTERVAL = 100;
 

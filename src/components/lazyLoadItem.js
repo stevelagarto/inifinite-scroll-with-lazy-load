@@ -5,8 +5,8 @@ function LazyLoadItem({
   Children, 
   itemData, 
   isVisible,
-  itemHeight = '300px',
-  itemWidth = '300px' 
+  itemHeight = '100%',
+  itemWidth = '100vw' 
 }) {
   const itemReference = useRef( null );
   useEffect(()=> {
@@ -19,19 +19,17 @@ function LazyLoadItem({
   const fadeIn = isVisible ? "item fade-in" : "item hidden";
   
   const wrapperStyle = {
-    minHeight: itemHeight,
-    maxHeight: itemHeight,
-    minWidth: itemWidth,
-    maxWidth: itemWidth,
+    height: itemHeight,
+    width: itemWidth,
   };
 
   const print = isVisible 
   ? <Children data={itemData}/> 
-  : <div ref={itemReference} id={itemData._id} style={{height: itemHeight,
-  width: itemWidth}}></div>
+  : <div ref={itemReference} id={itemData._id} style={{height: itemHeight}}></div>
 
   return (
-  <div style={wrapperStyle} className={fadeIn}>{print}</div>
+  <div  style={wrapperStyle} className={fadeIn}>      {print}
+  </div>
   )
 }
 
