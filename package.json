@@ -1,6 +1,6 @@
 {
   "name": "react-infscroll-lazyload",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "private": false,
   "main": "./dist/main.js",
   "homepage": "https://github.com/stevelagarto/inifinite-scroll-with-lazy-load#readme",
@@ -11,12 +11,7 @@
     "laztload"
   ],
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react-infscroll-lazyload": "^1.1.2",
-    "react-scripts": "3.3.0",
-    "react-svg-spinner": "^1.0.4",
-    "spinner-loader": "^1.0.3",
-    "styled-components": "^4.4.1"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -35,7 +30,9 @@
     "gulp-replace": "^1.0.0",
     "handlebars-loader": "^1.7.1",
     "husky": "2.3.0",
-    "react-loader-spinner": "^3.1.5"
+    "react-loader-spinner": "^3.1.5",
+    "prop-types": "^15.7.2",
+    "react-scripts": "3.3.0"
   },
   "peerDependencies": {
     "uuid": "^3.3.3",
