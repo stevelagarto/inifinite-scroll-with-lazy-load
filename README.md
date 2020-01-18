@@ -35,7 +35,7 @@ import Loader from './components/loader'
       lazyRootVal = {null}
       lazyRootMargin = '0px'
       lazyThreshold = {0.1}
-      Children={Children}
+      Children={ListItem}
       request={request}
       transformer= {(res) => res.results.map((element) => ({
           small: element.urls.thumb,
